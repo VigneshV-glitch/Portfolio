@@ -1,0 +1,12 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "vignesh-v-portfolio",
+  "compatibility_date": "2026-11-16",
+  "build": {
+    "command": "bun run build"
+  },
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "single-page-application"
+  }
+}
