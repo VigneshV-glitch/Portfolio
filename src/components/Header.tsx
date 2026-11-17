@@ -34,11 +34,11 @@ export const Header: React.FC<HeaderProps> = ({ onOpenContact }) => {
       {/* Progressive top-to-bottom gradient blur & opacity progression */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 top-0 -bottom-8 z-0 backdrop-blur-lg bg-gradient-to-b from-[#0B0D0E]/75 via-[#0B0D0E]/30 to-transparent [mask-image:linear-gradient(to_bottom,black_0%,rgba(0,0,0,0.85)_45%,rgba(0,0,0,0.35)_75%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_0%,rgba(0,0,0,0.85)_45%,rgba(0,0,0,0.35)_75%,transparent_100%)]"
+        className="pointer-events-none absolute inset-x-0 top-0 -bottom-14 z-0 backdrop-blur-lg bg-gradient-to-b from-[#0B0D0E]/75 via-[#0B0D0E]/35 to-transparent [mask-image:linear-gradient(to_bottom,black_0%,black_42%,rgba(0,0,0,0.65)_68%,rgba(0,0,0,0.22)_88%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_0%,black_42%,rgba(0,0,0,0.65)_68%,rgba(0,0,0,0.22)_88%,transparent_100%)]"
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 top-0 h-16 z-0 backdrop-blur-2xl [mask-image:linear-gradient(to_bottom,black_0%,rgba(0,0,0,0.75)_45%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_0%,rgba(0,0,0,0.75)_45%,transparent_100%)]"
+        className="pointer-events-none absolute inset-x-0 top-0 h-24 z-0 backdrop-blur-2xl [mask-image:linear-gradient(to_bottom,black_0%,rgba(0,0,0,0.9)_45%,rgba(0,0,0,0.45)_75%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_0%,rgba(0,0,0,0.9)_45%,rgba(0,0,0,0.45)_75%,transparent_100%)]"
       />
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         {/* Left: Brand Logo */}
