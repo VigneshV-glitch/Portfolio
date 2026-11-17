@@ -7,8 +7,8 @@
     "dev": "vite --port=3000 --host=0.0.0.0",
     "build": "vite build",
     "preview": "vite preview",
-    "deploy": "bun run build && npx wrangler deploy",
-    "cf:dev": "bun run build && npx wrangler dev",
+    "deploy": "wrangler deploy",
+    "cf:dev": "wrangler dev",
     "clean": "rm -rf dist server.js",
     "lint": "tsc --noEmit"
   },
