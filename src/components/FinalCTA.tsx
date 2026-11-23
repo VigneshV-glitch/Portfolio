@@ -2,11 +2,13 @@ import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import { EditorialReveal } from './MotionPrimitives';
 
+const WHATSAPP_URL = 'https://wa.me/+919790815455';
+
 interface FinalCTAProps {
-  onOpenContact: () => void;
+  onOpenContact?: () => void;
 }
 
-export const FinalCTA: React.FC<FinalCTAProps> = ({ onOpenContact }) => {
+export const FinalCTA: React.FC<FinalCTAProps> = () => {
   return (
     <section className="py-28 md:py-36 bg-[#0B0D0E] relative border-t border-white/5 overflow-hidden">
       {/* Subtle background glow */}
@@ -33,13 +35,15 @@ export const FinalCTA: React.FC<FinalCTAProps> = ({ onOpenContact }) => {
         </EditorialReveal>
 
         <EditorialReveal delay={0.1} yOffset={12} className="flex items-center justify-center">
-          <button
-            onClick={onOpenContact}
+          <a
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="group inline-flex items-center gap-2.5 px-8 py-4 text-base font-semibold text-white bg-indigo-600 hover:bg-indigo-500 border border-indigo-400/30 rounded-xl transition-all duration-200 shadow-2xl shadow-indigo-600/30 hover:shadow-indigo-500/40 active:scale-95 whitespace-nowrap shrink-0"
           >
             <span>Let's Talk</span>
             <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1 text-indigo-200" />
-          </button>
+          </a>
         </EditorialReveal>
 
       </div>

@@ -3,11 +3,13 @@ import { ArrowDown, ArrowUpRight, User } from 'lucide-react';
 import { EditorialReveal } from './MotionPrimitives';
 import profilePortrait from '../assets/images/vignesh_profile_portrait_1794570177176.jpg';
 
+const WHATSAPP_URL = 'https://wa.me/+919790815455';
+
 interface HeroProps {
-  onOpenContact: () => void;
+  onOpenContact?: () => void;
 }
 
-export const Hero: React.FC<HeroProps> = ({ onOpenContact }) => {
+export const Hero: React.FC<HeroProps> = () => {
   const [imageFailed, setImageFailed] = useState(false);
 
   return (
@@ -56,13 +58,15 @@ export const Hero: React.FC<HeroProps> = ({ onOpenContact }) => {
                   <ArrowDown className="w-4 h-4 transition-transform group-hover:translate-y-0.5 text-indigo-200" />
                 </a>
 
-                <button
-                  onClick={onOpenContact}
+                <a
+                  href={WHATSAPP_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="group inline-flex items-center gap-2 px-6 py-3.5 text-sm font-semibold text-gray-200 bg-[#16191E] hover:bg-[#1F242C] border border-white/10 hover:border-white/20 rounded-xl transition-all duration-200 active:scale-95 whitespace-nowrap shrink-0"
                 >
                   <span>Let's Connect</span>
                   <ArrowUpRight className="w-4 h-4 text-gray-400 group-hover:text-white transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                </button>
+                </a>
               </div>
             </EditorialReveal>
           </div>

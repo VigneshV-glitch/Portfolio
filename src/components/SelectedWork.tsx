@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowUpRight, CheckCircle2 } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import { motion, useScroll, useTransform, type MotionValue } from 'framer-motion';
 import { PROJECTS } from '../data/portfolioData';
 import { InteractiveSystemMockup } from './InteractiveSystemMockup';
@@ -81,29 +81,48 @@ const StackedProjectCard: React.FC<StackedProjectCardProps> = ({
 
               {/* What I Worked On / Contribution Note */}
               {project.contributions.length > 0 ? (
-                <div className="mb-4">
-                  <span className="text-[11px] font-mono text-gray-400 block mb-2">
-                    What I worked on
-                  </span>
-                  <ul
-                    className={`gap-x-4 gap-y-1.5 text-xs text-gray-300 ${
-                      project.contributions.length > 6
-                        ? 'grid grid-cols-1 sm:grid-cols-2'
-                        : 'space-y-1.5'
-                    }`}
-                  >
-                    {project.contributions.map((item) => (
-                      <li key={item} className="flex items-start gap-2">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-indigo-400 shrink-0 mt-0.5" />
-                        <span>{item}</span>
-                      </li>
-                    ))}
+                <div className="mb-5 rounded-xl bg-gradient-to-b from-[#171B24]/95 to-[#0C0E13]/95 border border-indigo-400/20 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] group-hover:border-indigo-400/35 transition-colors duration-300">
+                  <div className="flex items-center gap-3 mb-3">
+                    <span className="text-[11px] font-mono font-medium uppercase tracking-[0.12em] text-indigo-300 shrink-0">
+                      What I worked on
+                    </span>
+                    <div
+                      aria-hidden="true"
+                      className="h-px flex-1 bg-gradient-to-r from-indigo-400/35 via-white/10 to-transparent"
+                    />
+                    <span className="text-[11px] font-mono text-gray-400 tabular-nums shrink-0">
+                      {String(project.contributions.length).padStart(2, '0')} Scope
+                    </span>
+                  </div>
+                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    {project.contributions.map((item, itemIdx) => {
+                      const isOddTrailing =
+                        project.contributions.length % 2 === 1 &&
+                        itemIdx === project.contributions.length - 1;
+                      return (
+                        <li
+                          key={item}
+                          className={`flex items-start gap-2.5 px-3 py-2 rounded-lg bg-[#0B0D0E]/75 border border-white/[0.07] hover:border-indigo-400/30 hover:bg-[#131722] transition-colors ${
+                            isOddTrailing ? 'sm:col-span-2' : ''
+                          }`}
+                        >
+                          <span className="text-[10px] font-mono font-semibold text-indigo-400/90 tabular-nums pt-0.5 shrink-0">
+                            {String(itemIdx + 1).padStart(2, '0')}
+                          </span>
+                          <span className="text-xs text-gray-100 font-medium leading-snug">
+                            {item}
+                          </span>
+                        </li>
+                      );
+                    })}
                   </ul>
                 </div>
               ) : (
                 project.contributionNote && (
-                  <div className="mb-4 p-3 rounded-xl bg-[#0B0D0E] border border-white/10 text-xs text-gray-300">
-                    <span className="font-mono text-indigo-300 block mb-1">Project contribution</span>
+                  <div className="mb-5 rounded-xl bg-gradient-to-b from-[#171B24]/95 to-[#0C0E13]/95 border border-indigo-400/20 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] text-xs text-gray-200">
+                    <span className="text-[11px] font-mono font-medium uppercase tracking-[0.12em] text-indigo-300 block mb-1.5">
+                      Project contribution
+                    </span>
                     <p>{project.contributionNote}</p>
                   </div>
                 )
