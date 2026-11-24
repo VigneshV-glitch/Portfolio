@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { MotionConfig } from 'framer-motion';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { ContactModal } from './components/ContactModal';
+import { PageLoader } from './components/PageLoader';
 import { HomePage } from './pages/HomePage';
 import { WorkPage } from './pages/WorkPage';
 import { CaseStudyPage } from './pages/CaseStudyPage';
@@ -51,8 +52,46 @@ function AppContent() {
 }
 
 export default function App() {
+  const [isInitialLoading, setIsInitialLoading] = useState(true);
+
+  useEffect(() => {
+    let minDelayDone = false;
+    let pageLoaded = document.readyState === 'complete';
+
+    const finishIfReady = () => {
+      if (minDelayDone && pageLoaded) {
+        setIsInitialLoading(false);
+      }
+    };
+
+    const minTimer = window.setTimeout(() => {
+      minDelayDone = true;
+      finishIfReady();
+    }, 1350);
+
+    const maxSafetyTimer = window.setTimeout(() => {
+      setIsInitialLoading(false);
+    }, 2600);
+
+    const handleLoad = () => {
+      pageLoaded = true;
+      finishIfReady();
+    };
+
+    if (!pageLoaded) {
+      window.addEventListener('load', handleLoad, { once: true });
+    }
+
+    return () => {
+      window.clearTimeout(minTimer);
+      window.clearTimeout(maxSafetyTimer);
+      window.removeEventListener('load', handleLoad);
+    };
+  }, []);
+
   return (
     <MotionConfig reducedMotion="user">
+      <PageLoader isVisible={isInitialLoading} />
       <BrowserRouter>
         <AppContent />
       </BrowserRouter>

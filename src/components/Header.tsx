@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ArrowUpRight } from 'lucide-react';
+import workerLogo from '../assets/images/Worker_LOGO.png';
 
 const WHATSAPP_URL = 'https://wa.me/+919790815455';
 
@@ -49,6 +50,12 @@ export const Header: React.FC<HeaderProps> = () => {
           className="group flex items-center gap-2.5 focus:outline-none focus:ring-2 focus:ring-indigo-500 rounded-md py-1 px-1.5 -ml-1.5 transition-colors"
           aria-label="VIGNESH V Portfolio Home"
         >
+          <img
+            src={workerLogo}
+            alt=""
+            aria-hidden="true"
+            className="w-7 h-7 sm:w-8 sm:h-8 object-contain shrink-0 transition-transform duration-200 group-hover:scale-105"
+          />
           <span className="text-lg sm:text-xl font-bold tracking-tight text-white group-hover:text-indigo-400 transition-colors">
             VIGNESH V
           </span>
