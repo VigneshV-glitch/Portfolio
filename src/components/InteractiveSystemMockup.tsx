@@ -94,7 +94,7 @@ export const InteractiveSystemMockup: React.FC<MockupProps> = ({ type }) => {
             <Filter className="w-3.5 h-3.5 text-indigo-400" />
             <span>TMS Trip Operations & Conditional Filters</span>
           </div>
-          <div className="flex items-center gap-1 bg-[#16191E] p-1 rounded-lg border border-white/5">
+          <div className="flex flex-wrap items-center gap-1 bg-[#16191E] p-1 rounded-lg border border-white/5 max-w-full">
             {(['All', 'In Transit', 'Delayed'] as const).map((f) => (
               <button
                 key={f}
@@ -110,32 +110,32 @@ export const InteractiveSystemMockup: React.FC<MockupProps> = ({ type }) => {
         </div>
 
         <div className="grid grid-cols-3 gap-2 mb-3 text-xs font-mono tabular-nums">
-          <div className="bg-[#16191E] p-2.5 rounded-lg border border-white/5">
-            <span className="text-[10px] text-gray-400 block">Active Trips</span>
+          <div className="bg-[#16191E] p-2 sm:p-2.5 rounded-lg border border-white/5 min-w-0">
+            <span className="text-[10px] text-gray-400 block truncate">Active Trips</span>
             <span className="text-sm font-bold text-white">128</span>
           </div>
-          <div className="bg-[#16191E] p-2.5 rounded-lg border border-white/5">
-            <span className="text-[10px] text-gray-400 block">Saved Views</span>
-            <span className="text-sm font-bold text-indigo-300">Delay Watch</span>
+          <div className="bg-[#16191E] p-2 sm:p-2.5 rounded-lg border border-white/5 min-w-0">
+            <span className="text-[10px] text-gray-400 block truncate">Saved Views</span>
+            <span className="text-xs sm:text-sm font-bold text-indigo-300 block truncate">Delay Watch</span>
           </div>
-          <div className="bg-[#16191E] p-2.5 rounded-lg border border-white/5">
-            <span className="text-[10px] text-gray-400 block">Stop Exceptions</span>
+          <div className="bg-[#16191E] p-2 sm:p-2.5 rounded-lg border border-white/5 min-w-0">
+            <span className="text-[10px] text-gray-400 block truncate">Exceptions</span>
             <span className="text-sm font-bold text-amber-400">04</span>
           </div>
         </div>
 
         <div className="space-y-2">
           {visibleTrips.map((trip) => (
-            <div key={trip.id} className="flex items-center justify-between p-2.5 rounded-lg bg-[#16191E] border border-white/5 text-xs">
-              <div>
-                <div className="flex items-center gap-2 font-mono">
-                  <span className="text-indigo-300 font-semibold">{trip.id}</span>
-                  <span className="text-gray-400">·</span>
-                  <span className="text-white font-sans font-medium">{trip.route}</span>
+            <div key={trip.id} className="flex items-center justify-between gap-2 p-2.5 rounded-lg bg-[#16191E] border border-white/5 text-xs">
+              <div className="min-w-0">
+                <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5 font-mono">
+                  <span className="text-indigo-300 font-semibold shrink-0">{trip.id}</span>
+                  <span className="text-gray-400 hidden sm:inline">·</span>
+                  <span className="text-white font-sans font-medium truncate">{trip.route}</span>
                 </div>
-                <span className="text-[11px] text-gray-400">{trip.cargo} · {trip.stops}</span>
+                <span className="text-[11px] text-gray-400 block truncate">{trip.cargo} · {trip.stops}</span>
               </div>
-              <span className={`text-[11px] font-mono font-medium ${trip.status === 'Delayed' ? 'text-amber-400' : 'text-emerald-400'}`}>
+              <span className={`text-[11px] font-mono font-medium shrink-0 ${trip.status === 'Delayed' ? 'text-amber-400' : 'text-emerald-400'}`}>
                 {trip.status}
               </span>
             </div>
@@ -149,17 +149,17 @@ export const InteractiveSystemMockup: React.FC<MockupProps> = ({ type }) => {
     const active = milestoneStages[milestoneStage];
     return (
       <div className="w-full bg-[#0F1115] rounded-xl border border-white/10 p-4 sm:p-5 text-left font-sans shadow-xl">
-        <div className="flex items-center justify-between pb-3 mb-4 border-b border-white/10 text-xs">
+        <div className="flex flex-wrap items-center justify-between gap-2 pb-3 mb-4 border-b border-white/10 text-xs">
           <span className="font-mono font-semibold text-white">Milestone Operations Workflow</span>
           <span className="font-mono text-indigo-300 text-[11px]">Status-Driven View</span>
         </div>
 
-        <div className="grid grid-cols-3 gap-2 mb-4">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 mb-4">
           {milestoneStages.map((st, idx) => (
             <button
               key={st.name}
               onClick={() => setMilestoneStage(idx)}
-              className={`p-2.5 rounded-lg border text-left transition-colors ${
+              className={`p-2.5 rounded-lg border text-left transition-colors min-w-0 ${
                 milestoneStage === idx
                   ? 'bg-indigo-950/40 border-indigo-500/50 text-white'
                   : 'bg-[#16191E] border-white/5 text-gray-300 hover:bg-[#1C2028]'
@@ -172,11 +172,11 @@ export const InteractiveSystemMockup: React.FC<MockupProps> = ({ type }) => {
         </div>
 
         <div className="bg-[#16191E] p-3.5 rounded-lg border border-white/10 space-y-2 text-xs">
-          <div className="flex items-center justify-between">
+          <div className="flex flex-wrap items-center justify-between gap-2">
             <span className="font-semibold text-white">{active.name}</span>
             <span className="font-mono text-emerald-400">{active.status}</span>
           </div>
-          <div className="flex items-center justify-between text-[11px] font-mono text-gray-400 pt-2 border-t border-white/5">
+          <div className="flex flex-wrap items-center justify-between gap-2 text-[11px] font-mono text-gray-400 pt-2 border-t border-white/5">
             <span>Volume: {active.count}</span>
             <span>Role: {active.owner}</span>
           </div>
@@ -194,7 +194,7 @@ export const InteractiveSystemMockup: React.FC<MockupProps> = ({ type }) => {
             <Layers className="w-3.5 h-3.5 text-emerald-400" />
             <span>WMS Configuration Hierarchy</span>
           </div>
-          <div className="flex items-center gap-1 bg-[#16191E] p-1 rounded-lg border border-white/5">
+          <div className="flex flex-wrap items-center gap-1 bg-[#16191E] p-1 rounded-lg border border-white/5 max-w-full">
             {(['Zone A', 'Zone B', 'Cold Storage'] as const).map((z) => (
               <button
                 key={z}
@@ -212,11 +212,11 @@ export const InteractiveSystemMockup: React.FC<MockupProps> = ({ type }) => {
         <div className="space-y-2.5">
           {bins.map((bin) => (
             <div key={bin.code} className="bg-[#16191E] p-3 rounded-lg border border-white/10 text-xs">
-              <div className="flex items-center justify-between mb-1">
+              <div className="flex flex-wrap items-center justify-between gap-2 mb-1">
                 <span className="font-mono font-bold text-emerald-400">{bin.code}</span>
                 <span className="font-mono text-[11px] text-gray-300">{bin.rule}</span>
               </div>
-              <p className="text-[11px] font-mono text-gray-400">{bin.hierarchy}</p>
+              <p className="text-[11px] font-mono text-gray-400 break-words">{bin.hierarchy}</p>
             </div>
           ))}
         </div>
@@ -228,7 +228,7 @@ export const InteractiveSystemMockup: React.FC<MockupProps> = ({ type }) => {
     const active = dmsBays[selectedBay];
     return (
       <div className="w-full bg-[#0F1115] rounded-xl border border-white/10 p-4 sm:p-5 text-left font-sans shadow-xl">
-        <div className="flex items-center justify-between pb-3 mb-4 border-b border-white/10 text-xs">
+        <div className="flex flex-wrap items-center justify-between gap-2 pb-3 mb-4 border-b border-white/10 text-xs">
           <span className="font-mono font-semibold text-white">DMS Facility Operations</span>
           <span className="font-mono text-gray-400 text-[11px]">Scheduler · Gate · Yard</span>
         </div>
@@ -238,7 +238,7 @@ export const InteractiveSystemMockup: React.FC<MockupProps> = ({ type }) => {
             <button
               key={bay.id}
               onClick={() => setSelectedBay(idx)}
-              className={`p-2.5 rounded-lg border text-xs text-left transition-all ${
+              className={`p-2.5 rounded-lg border text-xs text-left transition-all min-w-0 ${
                 selectedBay === idx
                   ? 'bg-blue-950/40 border-blue-500/50 text-white'
                   : 'bg-[#16191E] border-white/5 text-gray-300 hover:bg-[#1C2028]'
@@ -251,12 +251,12 @@ export const InteractiveSystemMockup: React.FC<MockupProps> = ({ type }) => {
         </div>
 
         <div className="bg-[#16191E] p-3.5 rounded-lg border border-white/10 text-xs space-y-2">
-          <div className="flex items-center justify-between">
-            <span className="font-mono font-bold text-white flex items-center gap-2">
-              <Clock className="w-3.5 h-3.5 text-blue-400" />
-              {active.module} · {active.carrier}
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <span className="font-mono font-bold text-white flex items-center gap-2 min-w-0">
+              <Clock className="w-3.5 h-3.5 text-blue-400 shrink-0" />
+              <span className="truncate">{active.module} · {active.carrier}</span>
             </span>
-            <span className="font-mono text-indigo-300 text-[11px]">{active.status}</span>
+            <span className="font-mono text-indigo-300 text-[11px] shrink-0">{active.status}</span>
           </div>
           <div className="text-[11px] font-mono text-gray-400 pt-2 border-t border-white/5">
             Active Detail: {active.detail}
@@ -270,12 +270,12 @@ export const InteractiveSystemMockup: React.FC<MockupProps> = ({ type }) => {
     const rows = fmsTab === 'Vehicles' ? fmsVehicles : fmsDrivers;
     return (
       <div className="w-full bg-[#0F1115] rounded-xl border border-white/10 p-4 sm:p-5 text-left font-sans shadow-xl">
-        <div className="flex items-center justify-between pb-3 mb-4 border-b border-white/10 text-xs">
-          <div className="flex items-center gap-2 font-mono font-semibold text-white">
-            <Truck className="w-3.5 h-3.5 text-indigo-400" />
-            <span>FMS Fleet & Resource Allocation</span>
+        <div className="flex flex-wrap items-center justify-between gap-2 pb-3 mb-4 border-b border-white/10 text-xs">
+          <div className="flex items-center gap-2 font-mono font-semibold text-white min-w-0">
+            <Truck className="w-3.5 h-3.5 text-indigo-400 shrink-0" />
+            <span className="truncate">FMS Fleet & Resource Allocation</span>
           </div>
-          <div className="flex items-center gap-1 bg-[#16191E] p-1 rounded-lg border border-white/5">
+          <div className="flex flex-wrap items-center gap-1 bg-[#16191E] p-1 rounded-lg border border-white/5 max-w-full">
             {(['Vehicles', 'Drivers'] as const).map((tab) => (
               <button
                 key={tab}
@@ -292,13 +292,13 @@ export const InteractiveSystemMockup: React.FC<MockupProps> = ({ type }) => {
 
         <div className="space-y-2">
           {rows.map((row) => (
-            <div key={row.id} className="flex items-center justify-between p-2.5 rounded-lg bg-[#16191E] border border-white/5 text-xs">
-              <div>
+            <div key={row.id} className="flex items-center justify-between gap-2 p-2.5 rounded-lg bg-[#16191E] border border-white/5 text-xs">
+              <div className="min-w-0">
                 <span className="font-mono text-indigo-300 font-semibold mr-2">{row.id}</span>
-                <span className="text-white font-medium">{row.label}</span>
-                <span className="text-[11px] text-gray-400 block mt-0.5">{row.driver}</span>
+                <span className="text-white font-medium break-words">{row.label}</span>
+                <span className="text-[11px] text-gray-400 block mt-0.5 truncate">{row.driver}</span>
               </div>
-              <span className="text-[11px] font-mono text-emerald-400">{row.state}</span>
+              <span className="text-[11px] font-mono text-emerald-400 shrink-0">{row.state}</span>
             </div>
           ))}
         </div>
@@ -309,12 +309,12 @@ export const InteractiveSystemMockup: React.FC<MockupProps> = ({ type }) => {
   if (type === 'starsin') {
     return (
       <div className="w-full bg-[#0F1115] rounded-xl border border-white/10 p-4 sm:p-5 text-left font-sans shadow-xl">
-        <div className="flex items-center justify-between pb-3 mb-4 border-b border-white/10 text-xs">
-          <div className="flex items-center gap-2 font-mono font-semibold text-white">
-            <Play className="w-3.5 h-3.5 text-indigo-400" />
-            <span>StarsIn Discovery & Motion Showcase</span>
+        <div className="flex flex-wrap items-center justify-between gap-2 pb-3 mb-4 border-b border-white/10 text-xs">
+          <div className="flex items-center gap-2 font-mono font-semibold text-white min-w-0">
+            <Play className="w-3.5 h-3.5 text-indigo-400 shrink-0" />
+            <span className="truncate">StarsIn Discovery & Motion Showcase</span>
           </div>
-          <div className="flex items-center gap-1 bg-[#16191E] p-1 rounded-lg border border-white/5">
+          <div className="flex flex-wrap items-center gap-1 bg-[#16191E] p-1 rounded-lg border border-white/5 max-w-full">
             {(['Scouting Profile', 'Motion Reel'] as const).map((tab) => (
               <button
                 key={tab}
@@ -330,13 +330,13 @@ export const InteractiveSystemMockup: React.FC<MockupProps> = ({ type }) => {
         </div>
 
         {starsTab === 'Scouting Profile' ? (
-          <div className="bg-[#16191E] p-4 rounded-lg border border-white/10 space-y-3 text-xs">
-            <div className="flex items-center justify-between">
-              <div>
-                <span className="text-white font-bold text-sm block">Aarav Sharma · Midfielder</span>
-                <span className="text-[11px] font-mono text-gray-400">U-21 Division · Scouting Profile</span>
+          <div className="bg-[#16191E] p-3.5 sm:p-4 rounded-lg border border-white/10 space-y-3 text-xs">
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <div className="min-w-0">
+                <span className="text-white font-bold text-sm block truncate">Aarav Sharma · Midfielder</span>
+                <span className="text-[11px] font-mono text-gray-400 block truncate">U-21 Division · Scouting Profile</span>
               </div>
-              <span className="font-mono text-indigo-300 text-[11px]">Verified Talent</span>
+              <span className="font-mono text-indigo-300 text-[11px] shrink-0">Verified Talent</span>
             </div>
             <div className="grid grid-cols-3 gap-2 pt-2 border-t border-white/5 font-mono text-center tabular-nums">
               <div className="bg-[#0F1115] p-2 rounded">
@@ -354,10 +354,10 @@ export const InteractiveSystemMockup: React.FC<MockupProps> = ({ type }) => {
             </div>
           </div>
         ) : (
-          <div className="bg-[#16191E] p-4 rounded-lg border border-white/10 space-y-2.5 text-xs font-mono">
-            <div className="flex items-center justify-between text-white">
-              <span>After Effects Production Deliverables</span>
-              <Sparkles className="w-3.5 h-3.5 text-indigo-400" />
+          <div className="bg-[#16191E] p-3.5 sm:p-4 rounded-lg border border-white/10 space-y-2.5 text-xs font-mono">
+            <div className="flex items-center justify-between gap-2 text-white">
+              <span className="truncate">After Effects Production Deliverables</span>
+              <Sparkles className="w-3.5 h-3.5 text-indigo-400 shrink-0" />
             </div>
             <div className="p-2.5 rounded bg-[#0F1115] text-gray-300 text-[11px]">
               01 · Logo Reveal & Scene-Based Brand Animation
@@ -380,11 +380,11 @@ export const InteractiveSystemMockup: React.FC<MockupProps> = ({ type }) => {
     return (
       <div className="w-full bg-[#0F1115] rounded-xl border border-white/10 p-4 sm:p-5 text-left font-sans shadow-xl">
         <div className="flex flex-wrap items-center justify-between gap-2 pb-3 mb-4 border-b border-white/10 text-xs">
-          <div className="flex items-center gap-2 font-mono font-semibold text-white">
-            <Search className="w-3.5 h-3.5 text-indigo-400" />
-            <span>LogistikGuru Universal Search</span>
+          <div className="flex items-center gap-2 font-mono font-semibold text-white min-w-0">
+            <Search className="w-3.5 h-3.5 text-indigo-400 shrink-0" />
+            <span className="truncate">LogistikGuru Universal Search</span>
           </div>
-          <div className="flex items-center gap-1 bg-[#16191E] p-1 rounded-lg border border-white/5">
+          <div className="flex flex-wrap items-center gap-1 bg-[#16191E] p-1 rounded-lg border border-white/5 max-w-full">
             {(['All Verticals', 'Service Providers', 'Jobs'] as const).map((v) => (
               <button
                 key={v}
@@ -399,18 +399,18 @@ export const InteractiveSystemMockup: React.FC<MockupProps> = ({ type }) => {
           </div>
         </div>
 
-        <div className="flex items-center justify-between px-3 py-2 rounded-lg bg-[#16191E] border border-white/10 mb-3 text-xs text-gray-300">
-          <span className="font-mono text-[11px]">Global Filters: Region · Vertical · Verified</span>
-          <SlidersHorizontal className="w-3.5 h-3.5 text-indigo-400" />
+        <div className="flex items-center justify-between gap-2 px-3 py-2 rounded-lg bg-[#16191E] border border-white/10 mb-3 text-xs text-gray-300">
+          <span className="font-mono text-[11px] truncate">Global Filters: Region · Vertical · Verified</span>
+          <SlidersHorizontal className="w-3.5 h-3.5 text-indigo-400 shrink-0" />
         </div>
 
         <div className="space-y-2">
           {visibleResults.map((res) => (
-            <div key={res.title} className="p-2.5 rounded-lg bg-[#16191E] border border-white/5 flex items-center justify-between text-xs">
-              <div>
+            <div key={res.title} className="p-2.5 rounded-lg bg-[#16191E] border border-white/5 flex items-center justify-between gap-2 text-xs">
+              <div className="min-w-0">
                 <span className="text-[10px] font-mono text-indigo-300 block">{res.vertical}</span>
-                <span className="text-white font-semibold block">{res.title}</span>
-                <span className="text-[11px] text-gray-400">{res.meta}</span>
+                <span className="text-white font-semibold block truncate">{res.title}</span>
+                <span className="text-[11px] text-gray-400 block truncate">{res.meta}</span>
               </div>
               <Building2 className="w-4 h-4 text-gray-500 shrink-0" />
             </div>
